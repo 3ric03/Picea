@@ -9,3 +9,14 @@ var dynamodb = new AWS.DynamoDB({
     apiVersion: '2012-08-10',
     region: 'us-east-1' 
     });
+
+
+// module.exports.storage = async (event) => {
+//     // TODO implement
+//     const response = {
+//         statusCode: 200,
+//         body: JSON.stringify('This is a meeting'),
+//     };
+//     return response;
+// };
+      
