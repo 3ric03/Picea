@@ -71,10 +71,12 @@ functions:
     events:
       - http:
           path: storage
-          method: post
+          method: put
+          cors: true
       - http:
           path: storage
           method: get
+          cors: true
   db:
     handler: services/db.database
     description: Database
