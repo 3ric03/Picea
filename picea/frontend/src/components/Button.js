@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import * as styles from "./fileupload.css";
+import  "./fileupload.css";
 
 export default class FileUpload extends Component {
     state = {
@@ -39,8 +39,8 @@ uploadFile() {
     
     render() {
         return (
-            <div className={styles.fileUploadCont}>
-                <div className={styles.header}>
+            <div className={'fileUploadCont'}>
+                <div className={'header'}>
                     File Upload to S3 with Lambda, And React axios Application
                 </div>
                 <div>
