@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import * as styles from "./fileupload.css";
+
 export default class FileUpload extends Component {
     state = {
         fileToUpload: undefined,
@@ -8,9 +9,6 @@ export default class FileUpload extends Component {
         error: undefined
     };
 uploadFile() {
-        // When the upload file button is clicked, 
-        // first we need to get the presigned URL
-        // URL is the one you get from AWS API Gateway
         axios(
             "https://bkd4zey0l4.execute-api.us-east-1.amazonaws.com/dev/storage" +
                 this.state.fileToUpload.name
@@ -18,7 +16,6 @@ uploadFile() {
             // Getting the url from response
             const url = response.data.fileUploadURL;
    
-            // Initiating the PUT request to upload file    
             axios({
                 method: "PUT",
                 url: url,
@@ -39,6 +36,7 @@ uploadFile() {
                 });
         });
     }
+    
     render() {
         return (
             <div className={styles.fileUploadCont}>
