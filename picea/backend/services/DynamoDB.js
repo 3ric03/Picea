@@ -129,7 +129,6 @@ module.exports.database = async (
     meetingInfo,
     participantId, 
     counsellorId, 
-    counsellorId, 
     participantStartTime
 ) => {
     getMeeting, putMeeting, getMeetingParticipants, getMeetingCounsellor, addParticipantToMeeting,
