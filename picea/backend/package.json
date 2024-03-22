@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-chime-sdk-meetings": "^3.535.0",
     "aws-sdk": "^2.1583.0",
     "serverless": "^3.38.0"
   }

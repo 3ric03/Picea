@@ -77,6 +77,14 @@ functions:
           path: storage
           method: get
           cors: true
+  dynamo:
+    handler: services/DynamoDB.getAllCounsellers
+    description: get counsellers
+    events:
+      - http:
+          path: counsellers
+          method: get
+          cors: true
   db:
     handler: services/db.database
     description: Database
@@ -87,6 +95,14 @@ functions:
       - http:
           path: database
           method: get
+  meeting:
+    handler: services/chime.createMeetings
+    description: create meeting 
+    events:
+      - http:
+          path: meeting
+          method: get
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

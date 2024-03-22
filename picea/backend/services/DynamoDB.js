@@ -14,7 +14,7 @@ const meeting = "meeting"
 const counsellor = "counsellor"
 
 // Retrieve meeting from the meeting table by meeting title
-const getMeeting = async (id) => {
+module.exports.getMeeting = async (id) => {
     const result = await ddb.getItem({
       TableName: meeting,
       Key: {
@@ -27,7 +27,7 @@ const getMeeting = async (id) => {
   };
 
   // Add meeting in the meeting table
-const putMeeting = async (id, meetingInfo) => {
+module.exports.putMeeting = async (id, meetingInfo) => {
     await ddb.putItem({
       TableName: meeting,
       Item: {
@@ -40,7 +40,7 @@ const putMeeting = async (id, meetingInfo) => {
   };
 
   //returns a list of participants in the given meeting
-  const getMeetingParticipants = async (id, participantId) => {
+module.exports.getMeetingParticipants = async (id, participantId) => {
     const result = await ddb.getItem({
       TableName: meeting,
       Key: {
@@ -53,7 +53,7 @@ const putMeeting = async (id, meetingInfo) => {
   };
 
   //returns the id of the counsellor of the meeting 
-  const getMeetingCounsellor = async (id, counsellorId) => {
+module.exports.getMeetingCounsellor = async (id, counsellorId) => {
     const result = await ddb.getItem({
       TableName: meeting,
       Key: {
@@ -69,7 +69,7 @@ const putMeeting = async (id, meetingInfo) => {
   };
   
   //add a participant to a meeting
-  const addParticipantToMeeting = async (meetingID, participantId) => {
+module.exports.addParticipantToMeeting = async (meetingID, participantId) => {
     await ddb.UpdateItem({
       TableName: meeting,
       Key: {
@@ -85,7 +85,7 @@ const putMeeting = async (id, meetingInfo) => {
   };
 
 
-  const addCounsellorToMeeting = async (meetingID, counsellorId) => {
+module.exports.addCounsellorToMeeting = async (meetingID, counsellorId) => {
     await ddb.UpdateItem({
       TableName: meeting,
       Key: {
@@ -101,7 +101,7 @@ const putMeeting = async (id, meetingInfo) => {
   };
 
   //return a list of counsellor_id that fits within the participants' desired avaliability
-  const findAvaliableCounsellor = async (participantStartTime) => {
+module.exports.findAvaliableCounsellor = async (participantStartTime) => {
     await ddb.scan({
         TableName: counsellor,
         FilterExpression: 'endTime > :startTime', // Define your condition using a numerical comparison operator
@@ -112,7 +112,7 @@ const putMeeting = async (id, meetingInfo) => {
     return result.Item ? result.Item.counsellor_id : null;
   };
 
-  const getCounsellorName = async (id) => {
+module.exports.getCounsellorName = async (id) => {
     const result = await ddb.getItem({
       TableName: counsellor,
       Key: {
@@ -124,13 +124,34 @@ const putMeeting = async (id, meetingInfo) => {
     return result.Item ? JSON.parse(result.Item.name.SS) : null;
   };
 
-module.exports.database = async (
-    id, 
-    meetingInfo,
-    participantId, 
-    counsellorId, 
-    participantStartTime
-) => {
-    getMeeting, putMeeting, getMeetingParticipants, getMeetingCounsellor, addParticipantToMeeting,
-    addCounsellorToMeeting, findAvaliableCounsellor, getCounsellorName
+
+  export const scanTable = async (tableName) => {
+    const params = {
+        TableName: tableName,
+    };
+
+    const scanResults = [];
+    let items;
+    do{
+        items = await documentClient.scan(params).promise();
+        items.Items.forEach((item) => scanResults.push(item));
+        params.ExclusiveStartKey = items.LastEvaluatedKey;
+    }while(typeof items.LastEvaluatedKey !== "undefined");
+    
+    return scanResults;
 };
+
+module.exports.getAllCounsellers = async () => {
+    return scanTable(counsellor);
+}
+
+// module.exports.database = async (
+//     id, 
+//     meetingInfo,
+//     participantId, 
+//     counsellorId, 
+//     participantStartTime
+// ) => {
+//     getMeeting, putMeeting, getMeetingParticipants, getMeetingCounsellor, addParticipantToMeeting,
+//     addCounsellorToMeeting, findAvaliableCounsellor, getCounsellorName
+// };
