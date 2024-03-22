@@ -1,18 +1,13 @@
-'use strict';
+var AWS = require('aws-sdk');
+var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+AWS.config.credentials = credentials;
+AWS.config.update({region: 'us-east-1'});
 
-module.exports.hello = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
-};
+AWS.config.getCredentials(function(err) {
+  if (err) console.log(err.stack);
+  // credentials not loaded
+  else {
+    console.log("Access key:", AWS.config.credentials.accessKeyId);
+    console.log("Region: ", AWS.config.region);
+  }
+});
