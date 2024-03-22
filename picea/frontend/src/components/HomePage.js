@@ -17,7 +17,7 @@ function HomeButton() {
 
 const HomePage = () => (
   <div>
-    <h1>Hello, welcome to the homepage!</h1>
+    <h1>Welcome to Picea</h1>
     <HomeButton />
   </div>
 );
