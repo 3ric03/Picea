@@ -9,13 +9,15 @@ export default class FileUpload extends Component {
         error: undefined
     };
 uploadFile() {
+        console.log("about to send");
+        console.log(this.state.fileToUpload)
         axios(
-            "https://bkd4zey0l4.execute-api.us-east-1.amazonaws.com/dev/storage" +
+            "https://bkd4zey0l4.execute-api.us-east-1.amazonaws.com/dev/storage?fileName=" +
                 this.state.fileToUpload.name
         ).then(response => {
             // Getting the url from response
             const url = response.data.fileUploadURL;
-   
+            console.log(url);
             axios({
                 method: "PUT",
                 url: url,
