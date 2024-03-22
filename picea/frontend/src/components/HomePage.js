@@ -23,7 +23,7 @@ function getCounsellors() {
   )
     .then(response => {
         console.log(response);
-        return response;
+        return response.data.counsellors;
     })
     .catch(function (error) {
         console.error(error);

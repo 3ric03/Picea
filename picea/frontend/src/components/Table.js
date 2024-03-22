@@ -1,7 +1,6 @@
 import React from 'react'
-import JsonData from './data.json'
 
-function JsonDataDisplay(){
+function JsonDataDisplay(JsonData){
     const DisplayData=JsonData.map(
         (info)=>{
             return(
