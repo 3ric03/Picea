@@ -1,0 +1,62 @@
+[
+    {
+        "counsellor_id": {
+        "N": "3"
+        },
+        "email": {
+        "S": "Olivier.Trescases@uoft.com"
+        },
+        "endTime": {
+        "N": "12"
+        },
+        "name": {
+        "SS": [
+            "Olivier",
+            "Trescases"
+        ]
+        },
+        "startTime": {
+        "N": "9"
+        }
+    },
+    {
+        "counsellor_id": {
+        "N": "2"
+        },
+        "email": {
+        "S": "Connor.McGregor@utoronto.ca"
+        },
+        "endTime": {
+        "N": "20"
+        },
+        "name": {
+        "SS": [
+            "Connor",
+            "McGregor"
+        ]
+        },
+        "startTime": {
+        "N": "14"
+        }
+    },
+    {
+        "counsellor_id": {
+        "N": "1"
+        },
+        "email": {
+        "S": "Tom.Brady@uoft.com"
+        },
+        "endTime": {
+        "N": "15"
+        },
+        "name": {
+        "SS": [
+            "Brady",
+            "Tom"
+        ]
+        },
+        "startTime": {
+        "N": "17"
+        }
+    }
+]

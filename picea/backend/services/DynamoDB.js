@@ -3,7 +3,8 @@ var AWS = require('aws-sdk');
 
 // Set credentials and Region
 // This can also be done directly on the service client
-AWS.config.update({region: 'us-east-1', credentials: {YOUR_CREDENTIALS}});
+AWS.config.update({region: 'us-east-1'});
+var documentClient = new AWS.DynamoDB.DocumentClient();
 
 var db = new AWS.DynamoDB({
     apiVersion: '2012-08-10',
@@ -124,10 +125,9 @@ module.exports.getCounsellorName = async (id) => {
     return result.Item ? JSON.parse(result.Item.name.SS) : null;
   };
 
-
-  export const scanTable = async (tableName) => {
+const scanTable = async (tableName) => {
     const params = {
-        TableName: tableName,
+        TableName: tableName
     };
 
     const scanResults = [];
@@ -137,12 +137,33 @@ module.exports.getCounsellorName = async (id) => {
         items.Items.forEach((item) => scanResults.push(item));
         params.ExclusiveStartKey = items.LastEvaluatedKey;
     }while(typeof items.LastEvaluatedKey !== "undefined");
+
+    console.log(scanResults);
     
     return scanResults;
 };
 
 module.exports.getAllCounsellers = async () => {
-    return scanTable(counsellor);
+    let reponse;
+    try {
+        reponse = { 
+            'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Origin': "*",
+            "Content-Type": "application/json"
+
+        },
+        'body': JSON.stringify({
+            counsellors: scanTable(counsellor)
+        })
+        }
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+
+
+    return reponse;
 }
 
 // module.exports.database = async (

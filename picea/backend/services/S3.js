@@ -21,7 +21,7 @@ module.exports.storage = async (event, context) => {
         let returnObject = {
             statusCode: 200,
             headers: {
-                "access-control-allow-origin": "*"
+                "access-control-allow-origin": "*",
             },
             body: JSON.stringify({
                 fileUploadURL: preSignedURL
