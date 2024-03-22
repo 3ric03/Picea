@@ -23,10 +23,8 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs18.x
-
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: dev
+  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
@@ -59,9 +57,35 @@ provider:
 #    - include-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
-    path: test
+  test:
+    handler: services/test.test
+    memorySize: 128
+    description: Test Lambda Function
+    events:
+      - http: 
+          path: test
+          method: post
+  storage:
+    handler: services/S3.storage
+    description: S3 for storage
+    events:
+      - http:
+          path: storage
+          method: post
+      - http:
+          path: storage
+          method: get
+  db:
+    handler: services/db.database
+    description: Database
+    events:
+      - http:
+          path: database
+          method: post
+      - http:
+          path: database
+          method: get
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
