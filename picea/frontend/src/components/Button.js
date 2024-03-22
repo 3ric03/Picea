@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import  "./fileupload.css";
 
+// var cors = require('cors');
+// app.use(cors({origin: true, credentials: true}));
+
 export default class FileUpload extends Component {
     state = {
         fileToUpload: undefined,

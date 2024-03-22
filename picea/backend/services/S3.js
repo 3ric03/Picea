@@ -2,8 +2,8 @@
 
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3({ signatureVersion: "v4" });
-const bucketName = "picea";
-const expirationInSeconds = 120;
+const bucketName = "picea-storage";
+const expirationInSeconds = 300;
 
 module.exports.storage = async (event, context) => {
     const key = event.queryStringParameters.fileName;
