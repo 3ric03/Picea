@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FeaturedRemoteVideos, useMeetingManager, VideoTileGrid, useLocalVideo, DeviceLabels, LocalVideo, PreviewVideo } from 'amazon-chime-sdk-component-library-react';
 import { MeetingSessionConfiguration } from 'amazon-chime-sdk-js';
+import Button from './Button'
 
 function uuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -117,6 +118,7 @@ const MeetingRoom = () => {
                 <LocalVideo />
                 <FeaturedRemoteVideos />
                 <PreviewVideo />
+                <Button />
             </>
         ) : (
 
