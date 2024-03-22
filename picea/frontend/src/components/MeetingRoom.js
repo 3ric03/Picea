@@ -33,7 +33,7 @@ function uuid() {
     return (
       <>
         <VideoTileGrid />
-        <button onClick={toggleCamera}>Toggle Camera</button>
+        {/* <button onClick={toggleCamera}>Toggle Camera</button> */}
       </>
     );
   };
