@@ -9,16 +9,6 @@ var db = new AWS.DynamoDB({
     apiVersion: '2012-08-10',
     region: 'us-east-1' 
     });
-
-
-// module.exports.storage = async (event) => {
-//     // TODO implement
-//     const response = {
-//         statusCode: 200,
-//         body: JSON.stringify('This is a meeting'),
-//     };
-//     return response;
-// };
       
 const meeting = "meeting"
 const counsellor = "counsellor"
@@ -134,4 +124,14 @@ const putMeeting = async (id, meetingInfo) => {
     return result.Item ? JSON.parse(result.Item.Name.SS) : null;
   };
 
-  
+module.exports.database = async (
+    id, 
+    meetingInfo,
+    participantId, 
+    counsellorId, 
+    counsellorId, 
+    participantStartTime
+) => {
+    getMeeting, putMeeting, getMeetingParticipants, getMeetingCounsellor, addParticipantToMeeting,
+    addCounsellorToMeeting, findAvaliableCounsellor, getCounsellorName
+};
