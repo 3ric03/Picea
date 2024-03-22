@@ -104,7 +104,7 @@ const putMeeting = async (id, meetingInfo) => {
   const findAvaliableCounsellor = async (participantStartTime) => {
     await ddb.scan({
         TableName: counsellor,
-        FilterExpression: 'end_time > :startTime', // Define your condition using a numerical comparison operator
+        FilterExpression: 'endTime > :startTime', // Define your condition using a numerical comparison operator
         ExpressionAttributeValues: {
             ':startTime': participantEndTime // Specify the numerical value for comparison
         }
@@ -121,7 +121,7 @@ const putMeeting = async (id, meetingInfo) => {
         },
       },
     });
-    return result.Item ? JSON.parse(result.Item.Name.SS) : null;
+    return result.Item ? JSON.parse(result.Item.name.SS) : null;
   };
 
 module.exports.database = async (
