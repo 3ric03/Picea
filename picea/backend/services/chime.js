@@ -1,3 +1,5 @@
+"use strict";
+
 const { ChimeSDKMeetings } = require('@aws-sdk/client-chime-sdk-meetings');
 
 const chimeSDKMeetings = new ChimeSDKMeetings({ region: 'us-east-1' });
@@ -10,7 +12,7 @@ function uuid() {
 	});
 }
 
-module.exports.createMeetings = async (event, context) => {
+module.exports.createMeetings = async (event, context, callback) => {
 	const title = 'default-meeting';
 	const userId = 'default-user';
 
@@ -39,5 +41,5 @@ module.exports.createMeetings = async (event, context) => {
         })
     };
 
-    return returnObject;
+	callback(null, returnObject);
 }
