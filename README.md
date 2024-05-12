@@ -1,5 +1,6 @@
 # Software Architecture 
 <img src="https://github.com/3ric03/Picea/blob/main/arch.png" width="600px" height="300px">
+
 # What it does
 Picea is a proof of concept cloud-based resource that provides mental health support and is available to UofT students. It provides mental health support for all students by allowing them to join video conferencing sessions with professional counsellors. The application provides an availability schedule for all counsellors, to cater to the student's time of availability. Within a conference, students and counsellors are able to meet online face-to-face and can communicate by sharing files with each other.
 
