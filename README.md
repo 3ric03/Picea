@@ -1,4 +1,4 @@
-#Software Architecture 
+# Software Architecture 
 <img src="https://github.com/3ric03/Picea/blob/main/arch.png" width="600px" height="300px">
 
 # What it does
